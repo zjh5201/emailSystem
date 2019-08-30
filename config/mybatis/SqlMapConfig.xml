@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!--配置全局参数  -->
+	<settings>
+		<!--打开延迟加载开关  -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!--将积极加载改为消极加载（用到时才加载sql语句）  -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!--开启二级缓存  (在xxxMapper.xml中也要开启二级缓存)-->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
+	
+	<!--配置别名  -->
+	<typeAliases>
+		<!--批量扫描包名  -->
+		<package name="com.email.po"/>
+	</typeAliases>
+	
+	<!--加载映射文件  -->
+	<!--由于我们应用spring和mybatis的整合包来进行mapper的扫描，所以此处不用配置，
+		但是一定要遵循规则，mapper.xml与mapper.java在同一目录并且同名  -->
+	<!-- <mappers>
+		<mapper resource="mapper/UserMapper.xml"/>
+	</mappers> -->
+	<plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>
